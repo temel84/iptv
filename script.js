@@ -310,9 +310,43 @@ function initParallax() {
     });
 }
 
+// Netflix Style Loading Screen
+function initNetflixLoader() {
+    const loader = document.getElementById('netflix-loader');
+    const particlesContainer = document.getElementById('loader-particles');
+
+    // Create loader particles
+    if (particlesContainer) {
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'loader-particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+    }
+
+    // Prevent scroll during loading
+    document.body.classList.add('loading');
+
+    // Hide loader after animations complete
+    setTimeout(() => {
+        loader.classList.add('loaded');
+        document.body.classList.remove('loading');
+        document.body.classList.add('loaded');
+
+        // Remove loader from DOM after transition
+        setTimeout(() => {
+            loader.style.display = 'none';
+        }, 600);
+    }, 3500); // 3.5 seconds total loading time
+}
+
 // Add loading animation
 window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
+    // Initialize Netflix loader first
+    initNetflixLoader();
 
     // Initialize all features
     createParticles();

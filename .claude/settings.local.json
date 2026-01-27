@@ -8,7 +8,9 @@
       "Bash(git branch:*)",
       "Bash(git remote add:*)",
       "Bash(git push:*)",
-      "Bash(echo:*)"
+      "Bash(echo:*)",
+      "Bash(git checkout:*)",
+      "Bash(start https://github.com/temel84/iptv/settings/pages)"
     ]
   }
 }
