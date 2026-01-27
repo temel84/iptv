@@ -31,10 +31,14 @@ const prices = {
     ]
 };
 
-// Initialize particles
+// Initialize particles (optimized for mobile)
 function createParticles() {
     const particlesContainer = document.getElementById('particles');
-    const particleCount = 50;
+    if (!particlesContainer) return;
+
+    // Reduce particle count on mobile for better performance
+    const isMobile = window.innerWidth < 768;
+    const particleCount = isMobile ? 20 : 50;
 
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
@@ -57,9 +61,51 @@ function handleScroll() {
 
 // Mobile menu toggle
 function toggleMobileMenu() {
-    navMenu.classList.toggle('active');
+    const isActive = navMenu.classList.toggle('active');
     navToggle.classList.toggle('active');
+
+    // Prevent body scroll when menu is open
+    if (isActive) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = '';
+    }
 }
+
+// Touch handling for mobile menu
+let touchStartX = 0;
+let touchEndX = 0;
+
+function handleTouchStart(e) {
+    touchStartX = e.changedTouches[0].screenX;
+}
+
+function handleTouchEnd(e) {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+}
+
+function handleSwipe() {
+    const swipeThreshold = 50;
+    const diff = touchStartX - touchEndX;
+
+    // Swipe right to open menu
+    if (diff < -swipeThreshold && navMenu && !navMenu.classList.contains('active')) {
+        navMenu.classList.add('active');
+        navToggle.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    // Swipe left to close menu
+    else if (diff > swipeThreshold && navMenu && navMenu.classList.contains('active')) {
+        navMenu.classList.remove('active');
+        navToggle.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// Add touch event listeners
+document.addEventListener('touchstart', handleTouchStart, { passive: true });
+document.addEventListener('touchend', handleTouchEnd, { passive: true });
 
 // Smooth scroll for navigation links
 function initSmoothScroll() {
@@ -274,6 +320,12 @@ window.addEventListener('load', () => {
     initScrollAnimations();
     initPricingToggle();
     initSmoothScroll();
+    initTouchFeedback();
+
+    // Disable hover effects on touch devices
+    if ('ontouchstart' in window) {
+        document.body.classList.add('touch-device');
+    }
 });
 
 // Event listeners
@@ -289,8 +341,27 @@ document.addEventListener('click', (e) => {
     if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
         navMenu.classList.remove('active');
         navToggle.classList.remove('active');
+        document.body.style.overflow = '';
     }
 });
+
+// Add touch feedback to buttons
+function initTouchFeedback() {
+    const buttons = document.querySelectorAll('button, a, .btn-primary, .btn-secondary, .btn-price, .pricing-card, .feature-card, .device-item');
+
+    buttons.forEach(button => {
+        button.addEventListener('touchstart', function() {
+            this.style.opacity = '0.7';
+        }, { passive: true });
+
+        button.addEventListener('touchend', function() {
+            this.style.opacity = '1';
+        }, { passive: true });
+    });
+}
+
+// Initialize touch feedback
+initTouchFeedback();
 
 // Keyboard navigation
 document.addEventListener('keydown', (e) => {
@@ -431,7 +502,37 @@ function debounce(func, wait) {
 
 // Apply debounce to scroll handler
 const debouncedScroll = debounce(handleScroll, 10);
-window.addEventListener('scroll', debouncedScroll);
+window.addEventListener('scroll', debouncedScroll, { passive: true });
+
+// Optimize scroll performance on mobile
+if ('IntersectionObserver' in window) {
+    // Use passive listeners for better scroll performance
+    document.addEventListener('touchstart', function() {}, { passive: true });
+    document.addEventListener('touchmove', function() {}, { passive: true });
+}
+
+// Detect mobile device and optimize accordingly
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+           (window.innerWidth < 768);
+}
+
+// Apply mobile optimizations
+if (isMobileDevice()) {
+    // Reduce particle animations on mobile
+    document.documentElement.style.setProperty('--particle-count', '20');
+
+    // Optimize rendering
+    document.body.style.willChange = 'transform';
+
+    // Add smooth scroll with fallback
+    try {
+        document.documentElement.style.scrollBehavior = 'smooth';
+    } catch (e) {
+        // Fallback for browsers that don't support smooth scroll
+        console.log('Smooth scroll not supported');
+    }
+}
 
 // Add smooth reveal animations on page load
 document.addEventListener('DOMContentLoaded', () => {
