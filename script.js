@@ -61,15 +61,23 @@ function handleScroll() {
 
 // Mobile menu toggle
 function toggleMobileMenu() {
+    if (!navMenu || !navToggle) return;
+
     const isActive = navMenu.classList.toggle('active');
     navToggle.classList.toggle('active');
 
     // Prevent body scroll when menu is open
     if (isActive) {
         document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
     } else {
         document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
     }
+
+    console.log('Menu toggled:', isActive ? 'OPEN' : 'CLOSED');
 }
 
 // Touch handling for mobile menu
@@ -116,14 +124,22 @@ function initSmoothScroll() {
             const targetSection = document.querySelector(targetId);
 
             if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                // Close mobile menu first
+                if (navMenu && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    if (navToggle) navToggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                    document.body.style.position = '';
+                    document.body.style.width = '';
+                }
 
-                // Close mobile menu
-                navMenu.classList.remove('active');
-                navToggle.classList.remove('active');
+                // Then scroll to section
+                setTimeout(() => {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 300);
             }
         });
     });
@@ -372,10 +388,18 @@ navToggle.addEventListener('click', toggleMobileMenu);
 
 // Close mobile menu when clicking outside
 document.addEventListener('click', (e) => {
+    if (!navToggle || !navMenu) return;
+
+    // Check if click is outside menu and toggle button
     if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
-        navMenu.classList.remove('active');
-        navToggle.classList.remove('active');
-        document.body.style.overflow = '';
+        if (navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            navToggle.classList.remove('active');
+            document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.width = '';
+            console.log('Menu closed by outside click');
+        }
     }
 });
 
