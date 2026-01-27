@@ -10,7 +10,12 @@
       "Bash(git push:*)",
       "Bash(echo:*)",
       "Bash(git checkout:*)",
-      "Bash(start https://github.com/temel84/iptv/settings/pages)"
+      "Bash(start https://github.com/temel84/iptv/settings/pages)",
+      "Bash(ls:*)",
+      "Bash(git merge:*)",
+      "Bash(git stash:*)",
+      "Bash(git pull:*)",
+      "Bash(start:*)"
     ]
   }
 }
