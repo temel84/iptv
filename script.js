@@ -331,9 +331,15 @@ function initNetflixLoader() {
     const loader = document.getElementById('netflix-loader');
     const particlesContainer = document.getElementById('loader-particles');
 
+    if (!loader) {
+        console.error('Loader element not found');
+        return;
+    }
+
     // Create loader particles
     if (particlesContainer) {
-        for (let i = 0; i < 30; i++) {
+        const particleCount = window.innerWidth < 768 ? 15 : 30;
+        for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
             particle.className = 'loader-particle';
             particle.style.left = Math.random() * 100 + '%';
@@ -346,11 +352,20 @@ function initNetflixLoader() {
     // Prevent scroll during loading
     document.body.classList.add('loading');
 
+    // Force loader to be visible
+    loader.style.display = 'flex';
+    loader.style.visibility = 'visible';
+    loader.style.opacity = '1';
+
+    console.log('Loader initialized');
+
     // Hide loader after animations complete
     setTimeout(() => {
         loader.classList.add('loaded');
         document.body.classList.remove('loading');
         document.body.classList.add('loaded');
+
+        console.log('Loader finished');
 
         // Remove loader from DOM after transition
         setTimeout(() => {
