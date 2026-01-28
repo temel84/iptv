@@ -6,6 +6,7 @@
 const navbar = document.querySelector('.navbar');
 const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
+const menuOverlay = document.getElementById('menu-overlay');
 const navLinks = document.querySelectorAll('.nav-link');
 const statNumbers = document.querySelectorAll('.stat-number');
 
@@ -40,10 +41,11 @@ function handleScroll() {
 
 // Mobile menu toggle
 function toggleMobileMenu() {
-    if (!navMenu || !navToggle) return;
+    if (!navMenu || !navToggle || !menuOverlay) return;
 
     const isActive = navMenu.classList.toggle('active');
     navToggle.classList.toggle('active');
+    menuOverlay.classList.toggle('active');
 
     // Prevent body scroll when menu is open
     if (isActive) {
@@ -174,6 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Event listeners
     window.addEventListener('scroll', handleScroll);
     navToggle.addEventListener('click', toggleMobileMenu);
+    menuOverlay.addEventListener('click', toggleMobileMenu);
     navLinks.forEach(link => {
         link.addEventListener('click', closeMenuOnLinkClick);
     });

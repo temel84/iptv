@@ -10,60 +10,21 @@
         height: 56px;
     }
 
-    .nav-menu {
-        top: 56px;
-        padding: 1.5rem 1rem;
-        gap: 0;
-    }
-
-    /* Better overlay */
-    .nav-menu::after {
-        content: '';
-        position: fixed;
-        top: 56px;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.8);
-        backdrop-filter: blur(5px);
-        z-index: -1;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-    }
-
-    .nav-menu.active::after {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    /* Enhanced nav links */
+    /* Enhanced nav links styling improvements */
     .nav-link {
-        padding: 1rem 0.75rem;
         font-size: 1.1rem;
-        border-radius: 12px;
-        margin-bottom: 0.5rem;
-        background: rgba(0, 245, 255, 0.05);
-        border: 1px solid rgba(0, 245, 255, 0.1);
+        padding: 1.1rem 1.25rem;
     }
 
     .nav-link:hover,
     .nav-link.active {
-        background: rgba(0, 245, 255, 0.15);
-        border-color: var(--primary-color);
-        transform: scale(1.02);
+        transform: translateX(5px);
     }
 
-    /* Better hamburger button */
-    .nav-toggle {
-        width: 44px;
-        height: 44px;
-        background: var(--gradient-1);
-    }
-
-    .nav-toggle span {
-        width: 20px;
-        height: 2px;
+    /* Menu overlay for better close experience */
+    .menu-overlay {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
     }
 
     /* ========== ENHANCED HERO ========== */
@@ -296,9 +257,21 @@
 
     /* Disable tap highlight on specific elements */
     .nav-toggle,
+    .nav-link,
+    .menu-overlay,
     .telegram-float,
     .back-to-top {
         -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Better active state for nav toggle */
+    .nav-toggle:active {
+        transform: scale(0.92);
+    }
+
+    /* Better active state for overlay */
+    .menu-overlay:active {
+        opacity: 0.8;
     }
 
     /* Better touch feedback */
@@ -434,9 +407,12 @@
     }
 
     .nav-menu {
-        top: max(56px, calc(56px + env(safe-area-inset-top)));
-        padding-top: max(1.5rem, calc(1.5rem + env(safe-area-inset-top)));
-        padding-bottom: max(1rem, calc(1rem + env(safe-area-inset-bottom)));
+        padding-top: max(5rem, calc(5rem + env(safe-area-inset-top)));
+        padding-bottom: max(2rem, calc(2rem + env(safe-area-inset-bottom)));
+    }
+
+    .menu-overlay {
+        top: max(0, env(safe-area-inset-top));
     }
 
     .hero {
@@ -583,18 +559,22 @@
         scroll-behavior: smooth;
     }
 
-    /* Hide scrollbar but keep functionality */
+    /* Style the scrollbar for side menu */
     .nav-menu::-webkit-scrollbar {
         width: 4px;
     }
 
     .nav-menu::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.2);
+        background: rgba(0, 0, 0, 0.3);
     }
 
     .nav-menu::-webkit-scrollbar-thumb {
         background: var(--primary-color);
         border-radius: 2px;
+    }
+
+    .nav-menu::-webkit-scrollbar-thumb:hover {
+        background: #00d4ff;
     }
 }
 
@@ -629,8 +609,21 @@
         transform: scale(0.95);
     }
 
+    /* Enhanced nav link interactions */
+    .nav-link {
+        min-height: 52px;
+        display: flex;
+        align-items: center;
+    }
+
+    /* Add stagger animation delay for menu items */
+    .nav-menu .nav-link:nth-child(1) { transition-delay: 0.05s; }
+    .nav-menu .nav-link:nth-child(2) { transition-delay: 0.1s; }
+    .nav-menu .nav-link:nth-child(3) { transition-delay: 0.15s; }
+    .nav-menu .nav-link:nth-child(4) { transition-delay: 0.2s; }
+    .nav-menu .nav-link:nth-child(5) { transition-delay: 0.25s; }
+
     /* Enhanced touch targets */
-    .nav-link,
     .contact-link,
     .footer-links a {
         min-height: 48px;
