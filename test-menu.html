@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Menu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0a0e27;
+            color: white;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 56px;
+            background: rgba(5, 8, 22, 0.98);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1rem;
+            z-index: 10001;
+        }
+
+        .nav-logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #00f5ff;
+        }
+
+        .nav-toggle {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #00f5ff, #00d4ff);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-toggle span {
+            width: 22px;
+            height: 2.5px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 85%;
+            max-width: 320px;
+            background: linear-gradient(180deg, rgba(5, 8, 22, 0.98) 0%, rgba(10, 14, 39, 0.98) 100%);
+            border-left: 2px solid #00f5ff;
+            padding: 5rem 1.5rem 2rem;
+            transform: translateX(100%);
+            transition: transform 0.35s ease;
+            z-index: 10000;
+            overflow-y: auto;
+        }
+
+        .nav-menu.active {
+            transform: translateX(0);
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-link {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            background: rgba(0, 245, 255, 0.1);
+            border: 1px solid rgba(0, 245, 255, 0.3);
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .content {
+            padding: 80px 1rem 1rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #00f5ff;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">KAPTAN IPTV</div>
+        <button class="nav-toggle" id="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <div class="nav-menu" id="nav-menu">
+        <a href="#" class="nav-link">Accueil</a>
+        <a href="#" class="nav-link">Fonctionnalités</a>
+        <a href="#" class="nav-link">Tarifs</a>
+        <a href="#" class="nav-link">Appareils</a>
+        <a href="#" class="nav-link">Contact</a>
+    </div>
+
+    <div class="menu-overlay" id="menu-overlay"></div>
+
+    <div class="content">
+        <h1>Test Menu Mobile</h1>
+        <p>Cliquez sur le bouton hamburger en haut à droite pour tester le menu.</p>
+        <p>Le menu devrait coulisser de la droite avec un overlay sombre.</p>
+    </div>
+
+    <script>
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        const menuOverlay = document.getElementById('menu-overlay');
+
+        function toggleMenu() {
+            const isActive = navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            console.log('Menu:', isActive ? 'OPEN' : 'CLOSED');
+        }
+
+        navToggle.addEventListener('click', toggleMenu);
+        menuOverlay.addEventListener('click', toggleMenu);
+    </script>
+</body>
+</html>
