@@ -807,6 +807,12 @@ section {
     background: linear-gradient(135deg, rgba(123, 44, 191, 0.2) 0%, rgba(255, 0, 110, 0.1) 100%);
 }
 
+.pricing-card.trial {
+    background: linear-gradient(135deg, rgba(0, 245, 255, 0.15) 0%, rgba(0, 200, 255, 0.1) 100%);
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 0 30px rgba(0, 245, 255, 0.3);
+}
+
 .pricing-badge {
     position: absolute;
     top: -15px;
@@ -829,6 +835,12 @@ section {
 
 .pricing-badge.special {
     background: var(--gradient-2);
+}
+
+.pricing-badge.trial-badge {
+    background: linear-gradient(135deg, #00f5ff, #0088cc);
+    font-size: 0.85rem;
+    padding: 0.4rem 1rem;
 }
 
 .pricing-header {
@@ -928,6 +940,22 @@ section {
     margin-top: 0.25rem;
 }
 
+.pricing-trial-note {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(0, 245, 255, 0.1);
+    border: 1px solid rgba(0, 245, 255, 0.3);
+    border-radius: 15px;
+    margin-bottom: 1.5rem;
+}
+
+.pricing-trial-note p {
+    margin: 0;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
 .pricing-actions {
     display: flex;
     flex-direction: column;
@@ -971,6 +999,27 @@ section {
 .btn-buy:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-2);
+}
+
+.btn-price.trial-btn {
+    background: linear-gradient(135deg, #00f5ff, #0088cc);
+    color: #000;
+    font-weight: 700;
+    animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(0, 245, 255, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(0, 245, 255, 0.8);
+    }
+}
+
+.btn-price.trial-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 0 40px rgba(0, 245, 255, 1);
 }
 
 /* Devices Section */
