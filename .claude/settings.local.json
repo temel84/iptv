@@ -20,7 +20,9 @@
       "Bash(gh run list:*)",
       "Bash(gh repo view:*)",
       "Bash(git subtree add:*)",
-      "Bash(git fetch:*)"
+      "Bash(git fetch:*)",
+      "Bash(timeout:*)",
+      "Bash(del:*)"
     ]
   }
 }

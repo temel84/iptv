@@ -6,8 +6,8 @@
 const navbar = document.querySelector('.navbar');
 const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
-const menuOverlay = document.getElementById('menu-overlay');
 const navLinks = document.querySelectorAll('.nav-link');
+const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
 const statNumbers = document.querySelectorAll('.stat-number');
 
 // Initialize particles (optimized for mobile)
@@ -36,70 +36,6 @@ function handleScroll() {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
-    }
-}
-
-// Mobile menu toggle
-function toggleMobileMenu() {
-    if (!navMenu || !navToggle || !menuOverlay) return;
-
-    const isActive = navMenu.classList.toggle('active');
-    navToggle.classList.toggle('active');
-    menuOverlay.classList.toggle('active');
-
-    // Prevent body scroll when menu is open
-    if (isActive) {
-        document.body.style.overflow = 'hidden';
-        document.body.style.position = 'fixed';
-        document.body.style.width = '100%';
-    } else {
-        document.body.style.overflow = '';
-        document.body.style.position = '';
-        document.body.style.width = '';
-    }
-
-    console.log('Menu toggled:', isActive ? 'OPEN' : 'CLOSED');
-}
-
-// Touch handling for mobile menu with better gesture support
-let touchStartX = 0;
-let touchStartY = 0;
-let touchEndX = 0;
-let touchEndY = 0;
-
-function handleTouchStart(e) {
-    touchStartX = e.changedTouches[0].screenX;
-    touchStartY = e.changedTouches[0].screenY;
-}
-
-function handleTouchEnd(e) {
-    touchEndX = e.changedTouches[0].screenX;
-    touchEndY = e.changedTouches[0].screenY;
-    handleSwipe();
-}
-
-function handleSwipe() {
-    const swipeThreshold = 50;
-    const diffX = touchStartX - touchEndX;
-    const diffY = touchStartY - touchEndY;
-
-    // Only register horizontal swipes
-    if (Math.abs(diffX) > Math.abs(diffY)) {
-        // Swipe right to open menu
-        if (diffX < -swipeThreshold && !navMenu.classList.contains('active')) {
-            toggleMobileMenu();
-        }
-        // Swipe left to close menu
-        else if (diffX > swipeThreshold && navMenu.classList.contains('active')) {
-            toggleMobileMenu();
-        }
-    }
-}
-
-// Close menu when clicking on a link
-function closeMenuOnLinkClick() {
-    if (navMenu && navMenu.classList.contains('active')) {
-        toggleMobileMenu();
     }
 }
 
@@ -175,15 +111,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Event listeners
     window.addEventListener('scroll', handleScroll);
-    navToggle.addEventListener('click', toggleMobileMenu);
-    menuOverlay.addEventListener('click', toggleMobileMenu);
-    navLinks.forEach(link => {
-        link.addEventListener('click', closeMenuOnLinkClick);
-    });
 
-    // Touch events for mobile swipe
-    document.addEventListener('touchstart', handleTouchStart, { passive: true });
-    document.addEventListener('touchend', handleTouchEnd, { passive: true });
+    // Smooth scroll for mobile nav items
+    mobileNavItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    });
 
     console.log('Kaptan IPTV - Site initialisé avec succès');
 });
