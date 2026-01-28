@@ -119,16 +119,114 @@ body {
     align-items: center;
     gap: 0.5rem;
     font-size: 1.2rem;
-    font-weight: 700;
+    font-weight: 800;
+}
+
+.logo-anchor {
+    font-size: 1.4rem;
     background: var(--gradient-1);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    animation: anchor-glow 2s ease-in-out infinite;
 }
 
-.nav-logo i {
-    font-size: 1.3rem;
-    color: var(--primary-color);
+@keyframes anchor-glow {
+    0%, 100% {
+        filter: drop-shadow(0 0 5px rgba(0, 245, 255, 0.5));
+    }
+    50% {
+        filter: drop-shadow(0 0 15px rgba(0, 245, 255, 1));
+    }
+}
+
+.logo-text,
+.logo-iptv {
+    display: inline-flex;
+    gap: 0.1rem;
+}
+
+.logo-letter {
+    display: inline-block;
+    animation: letter-color 3s ease-in-out infinite;
+    text-shadow: 0 0 10px currentColor;
+}
+
+/* KAPTAN - Different colors for each letter */
+.letter-k {
+    color: #00f5ff;
+    animation-delay: 0s;
+}
+
+.letter-a {
+    color: #00ff88;
+    animation-delay: 0.2s;
+}
+
+.letter-p {
+    color: #ffcc00;
+    animation-delay: 0.4s;
+}
+
+.letter-t {
+    color: #ff6600;
+    animation-delay: 0.6s;
+}
+
+.letter-a2 {
+    color: #ff0066;
+    animation-delay: 0.8s;
+}
+
+.letter-n {
+    color: #cc00ff;
+    animation-delay: 1s;
+}
+
+/* IPTV - Cyan theme */
+.letter-i {
+    color: #00f5ff;
+    animation-delay: 0.3s;
+}
+
+.letter-p2 {
+    color: #00d4ff;
+    animation-delay: 0.5s;
+}
+
+.letter-t2 {
+    color: #00b3ff;
+    animation-delay: 0.7s;
+}
+
+.letter-v {
+    color: #0091ff;
+    animation-delay: 0.9s;
+}
+
+@keyframes letter-color {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-3px) scale(1.1);
+        opacity: 0.9;
+    }
+}
+
+/* Hover effect */
+.nav-logo:hover .logo-letter {
+    animation: letter-bounce 0.5s ease-in-out;
+}
+
+@keyframes letter-bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
 }
 
 .nav-menu {
@@ -1824,8 +1922,12 @@ section {
         letter-spacing: -0.3px;
     }
 
-    .nav-logo i {
-        font-size: 1.1rem;
+    .logo-anchor {
+        font-size: 1.2rem;
+    }
+
+    .logo-letter {
+        font-size: 0.95rem;
     }
 
     .nav-menu {
