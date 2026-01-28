@@ -7,7 +7,7 @@ Disallow: /.git/
 Disallow: /node_modules/
 
 # Sitemap
-Sitemap: https://temel84.github.io/iptv/sitemap.xml
+Sitemap: https://www.kaptantv.fr/sitemap.xml
 
 # Crawl-delay (optional)
 Crawl-delay: 1
