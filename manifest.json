@@ -1,7 +1,7 @@
 {
   "name": "Kaptan IPTV",
   "short_name": "Kaptan IPTV",
-  "description": "Türkiye'nin en iyi IPTV servisi. 300.000+ içerik, 4K kalite.",
+  "description": "Le meilleur service IPTV. 300.000+ contenus, qualité 4K.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0a0e27",
@@ -22,7 +22,7 @@
     }
   ],
   "categories": ["entertainment", "video"],
-  "lang": "tr",
+  "lang": "fr",
   "dir": "ltr",
   "scope": "/",
   "prefer_related_applications": false
