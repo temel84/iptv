@@ -1,0 +1,640 @@
+/* ===========================================
+   ENHANCED MOBILE OPTIMIZATIONS
+   =========================================== */
+
+/* ========== MOBILE FIRST IMPROVEMENTS ========== */
+@media (max-width: 768px) {
+    /* ========== ENHANCED NAVIGATION ========== */
+    .navbar {
+        padding: 0.5rem 1rem;
+        height: 56px;
+    }
+
+    .nav-menu {
+        top: 56px;
+        padding: 1.5rem 1rem;
+        gap: 0;
+    }
+
+    /* Better overlay */
+    .nav-menu::after {
+        content: '';
+        position: fixed;
+        top: 56px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(5px);
+        z-index: -1;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .nav-menu.active::after {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Enhanced nav links */
+    .nav-link {
+        padding: 1rem 0.75rem;
+        font-size: 1.1rem;
+        border-radius: 12px;
+        margin-bottom: 0.5rem;
+        background: rgba(0, 245, 255, 0.05);
+        border: 1px solid rgba(0, 245, 255, 0.1);
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        background: rgba(0, 245, 255, 0.15);
+        border-color: var(--primary-color);
+        transform: scale(1.02);
+    }
+
+    /* Better hamburger button */
+    .nav-toggle {
+        width: 44px;
+        height: 44px;
+        background: var(--gradient-1);
+    }
+
+    .nav-toggle span {
+        width: 20px;
+        height: 2px;
+    }
+
+    /* ========== ENHANCED HERO ========== */
+    .hero {
+        padding: 6rem 1rem 3rem;
+        min-height: auto;
+    }
+
+    .hero-badge {
+        font-size: 0.75rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .hero-title {
+        font-size: 1.3rem;
+        line-height: 1.3;
+        margin-bottom: 1rem;
+    }
+
+    .hero-title-xl {
+        font-size: 1.8rem;
+    }
+
+    .hero-description {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-stats {
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+    }
+
+    .stat-item {
+        padding: 1rem;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .hero-buttons a {
+        width: 100%;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.95rem;
+    }
+
+    .hero-features {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: center;
+    }
+
+    .feature-tag {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.75rem;
+    }
+
+    /* ========== ENHANCED PRICING ========== */
+    .pricing {
+        padding: 4rem 1rem 3rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.85rem;
+    }
+
+    .pricing-card {
+        padding: 1.75rem 1.25rem;
+    }
+
+    .pricing-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .pricing-price .amount {
+        font-size: 2.2rem;
+    }
+
+    .pricing-period {
+        font-size: 0.8rem;
+    }
+
+    .pricing-features {
+        gap: 0.5rem;
+    }
+
+    .pricing-features li {
+        font-size: 0.85rem;
+        padding: 0.4rem 0;
+    }
+
+    .pricing-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .pricing-actions a {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    /* ========== ENHANCED FEATURES ========== */
+    .features {
+        padding: 4rem 1rem 3rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .feature-card {
+        padding: 1.5rem;
+    }
+
+    .feature-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+
+    .feature-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .feature-card p {
+        font-size: 0.85rem;
+        line-height: 1.6;
+    }
+
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+
+    .category-item {
+        padding: 0.75rem;
+        font-size: 0.8rem;
+    }
+
+    /* ========== ENHANCED DEVICES ========== */
+    .devices-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .device-item {
+        padding: 1rem;
+    }
+
+    .device-icon {
+        font-size: 1.8rem;
+    }
+
+    .device-item h4 {
+        font-size: 0.9rem;
+    }
+
+    .device-item p {
+        font-size: 0.75rem;
+    }
+
+    /* ========== ENHANCED TESTIMONIALS ========== */
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .testimonial-card {
+        padding: 1.5rem;
+    }
+
+    .testimonial-text {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    /* ========== ENHANCED CTA ========== */
+    .cta {
+        padding: 4rem 1rem 3rem;
+        text-align: center;
+    }
+
+    .cta-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .cta-content p {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .cta-buttons a {
+        width: 100%;
+        padding: 0.9rem 1.5rem;
+    }
+
+    /* ========== TOUCH OPTIMIZATIONS ========== */
+    button,
+    a,
+    .contact-link,
+    .btn-price,
+    .btn-price-vip,
+    .btn-buy {
+        min-height: 44px;
+        min-width: 44px;
+        -webkit-tap-highlight-color: rgba(0, 245, 255, 0.2);
+    }
+
+    /* Disable tap highlight on specific elements */
+    .nav-toggle,
+    .telegram-float,
+    .back-to-top {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Better touch feedback */
+    .pricing-card:active,
+    .feature-card:active,
+    .device-item:active,
+    .contact-card:active {
+        transform: scale(0.98);
+    }
+}
+
+/* ========== SMALL MOBILE (480px) ========== */
+@media (max-width: 480px) {
+    /* Ultra compact spacing */
+    body {
+        font-size: 14px;
+    }
+
+    .hero {
+        padding: 5rem 0.75rem 2.5rem;
+    }
+
+    .hero-title {
+        font-size: 1.1rem;
+    }
+
+    .hero-title-xl {
+        font-size: 1.5rem;
+    }
+
+    .hero-description {
+        font-size: 0.85rem;
+    }
+
+    /* Smaller stats */
+    .stat-number {
+        font-size: 1.3rem;
+    }
+
+    .stat-label {
+        font-size: 0.7rem;
+    }
+
+    /* Pricing adjustments */
+    .pricing-card {
+        padding: 1.5rem 1rem;
+    }
+
+    .pricing-price .amount {
+        font-size: 1.8rem;
+    }
+
+    .pricing-features li {
+        font-size: 0.8rem;
+    }
+
+    /* Categories in single column */
+    .categories-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Apps grid */
+    .apps-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Contact stats stacked */
+    .contact-stat strong {
+        font-size: 1rem;
+    }
+
+    .contact-stat span {
+        font-size: 0.75rem;
+    }
+}
+
+/* ========== ULTRA SMALL MOBILE (360px) ========== */
+@media (max-width: 360px) {
+    /* Minimal spacing */
+    .hero {
+        padding: 4rem 0.5rem 2rem;
+    }
+
+    .hero-title {
+        font-size: 1rem;
+    }
+
+    .hero-title-xl {
+        font-size: 1.3rem;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+    }
+
+    /* Ultra compact pricing */
+    .pricing-card {
+        padding: 1.25rem 0.75rem;
+    }
+
+    .pricing-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .pricing-price .amount {
+        font-size: 1.6rem;
+    }
+
+    /* Smaller buttons */
+    .pricing-actions a {
+        padding: 0.75rem 0.85rem;
+        font-size: 0.85rem;
+    }
+
+    /* Devices in single column */
+    .devices-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Trust badges stacked */
+    .trust-badge {
+        font-size: 0.75rem;
+        padding: 0.6rem 0.75rem;
+    }
+}
+
+/* ========== IPHONE X SAFE AREAS ========== */
+@media (max-width: 768px) {
+    .navbar {
+        padding-top: max(0.5rem, env(safe-area-inset-top));
+        padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+        height: max(56px, calc(56px + env(safe-area-inset-top)));
+    }
+
+    .nav-menu {
+        top: max(56px, calc(56px + env(safe-area-inset-top)));
+        padding-top: max(1.5rem, calc(1.5rem + env(safe-area-inset-top)));
+        padding-bottom: max(1rem, calc(1rem + env(safe-area-inset-bottom)));
+    }
+
+    .hero {
+        padding-left: max(1rem, env(safe-area-inset-left));
+        padding-right: max(1rem, env(safe-area-inset-right));
+    }
+
+    .features,
+    .pricing,
+    .devices,
+    .testimonials,
+    .cta,
+    .contact {
+        padding-left: max(1rem, env(safe-area-inset-left));
+        padding-right: max(1rem, env(safe-area-inset-right));
+    }
+
+    /* Adjust floating buttons */
+    .telegram-float {
+        bottom: max(20px, env(safe-area-inset-bottom));
+        right: max(20px, env(safe-area-inset-right));
+    }
+
+    .back-to-top {
+        bottom: max(85px, calc(env(safe-area-inset-bottom) + 65px));
+        left: max(20px, env(safe-area-inset-left));
+    }
+}
+
+/* ========== MOBILE LANDSCAPE ========== */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero {
+        padding: 3rem 1rem 2rem;
+        min-height: auto;
+    }
+
+    .hero-title-xl {
+        font-size: 1.5rem;
+    }
+
+    .hero-stats {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
+    }
+
+    .pricing {
+        padding: 3rem 1rem 2rem;
+    }
+
+    .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .pricing-card {
+        padding: 1.25rem;
+    }
+
+    .pricing-card h3 {
+        font-size: 1rem;
+    }
+
+    .pricing-price .amount {
+        font-size: 1.5rem;
+    }
+
+    .pricing-features {
+        display: none;
+    }
+
+    .pricing-vip {
+        font-size: 0.8rem;
+    }
+}
+
+/* ========== PERFORMANCE OPTIMIZATIONS FOR MOBILE ========== */
+@media (max-width: 768px) {
+    /* Reduce animations on mobile */
+    .hero-image {
+        display: none;
+    }
+
+    /* Simplify particle animation */
+    .particle {
+        animation-duration: 30s;
+    }
+
+    /* Optimize shadows */
+    .pricing-card,
+    .feature-card,
+    .contact-card {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Reduce blur effects */
+    .nav-menu {
+        backdrop-filter: blur(10px);
+    }
+
+    /* Optimize transforms */
+    .pricing-card:hover,
+    .feature-card:hover {
+        transform: translateY(-5px);
+    }
+}
+
+/* ========== ACCESSIBILITY IMPROVEMENTS ========== */
+@media (max-width: 768px) {
+    /* Better focus states */
+    a:focus,
+    button:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+    }
+}
+
+/* ========== MOBILE TYPOGRAPHY OPTIMIZATION ========== */
+@media (max-width: 768px) {
+    /* Optimize line heights for mobile */
+    .hero-description,
+    .section-subtitle,
+    .feature-card p,
+    .testimonial-text {
+        line-height: 1.7;
+    }
+
+    /* Better text rendering */
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+    }
+
+    /* Optimize font sizes */
+    h1, h2, h3, h4 {
+        letter-spacing: -0.3px;
+    }
+}
+
+/* ========== MOBILE SCROLL OPTIMIZATION ========== */
+@media (max-width: 768px) {
+    /* Smooth scroll */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Hide scrollbar but keep functionality */
+    .nav-menu::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .nav-menu::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-menu::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+        border-radius: 2px;
+    }
+}
+
+/* ========== MOBILE LOADING SCREEN ========== */
+@media (max-width: 768px) {
+    .netflix-loader {
+        padding: 1rem;
+    }
+
+    .logo-anchor {
+        width: 80px;
+        height: 80px;
+    }
+
+    .logo-text,
+    .logo-iptv {
+        font-size: 1.2rem;
+    }
+
+    .loader-bar {
+        width: 200px;
+        height: 3px;
+    }
+}
+
+/* ========== ENHANCED MOBILE INTERACTIONS ========== */
+@media (max-width: 768px) {
+    /* Better active states */
+    .btn-primary:active,
+    .btn-secondary:active,
+    .btn-price:active {
+        transform: scale(0.95);
+    }
+
+    /* Enhanced touch targets */
+    .nav-link,
+    .contact-link,
+    .footer-links a {
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+    }
+}
